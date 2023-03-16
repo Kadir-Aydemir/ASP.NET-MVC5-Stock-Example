@@ -1,0 +1,46 @@
+﻿@using ASP.NET_MVC5_Stock_Example.Models.Entity
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<CUSTOMERS>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div style="margin-block:15px">
+    <a href="/Customer/newCustomer" class="btn btn-primary">New Customer</a>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>CITY</th>
+        <th>BALANCE</th>
+        <th>TRANSACTIONS</th>
+    </tr>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.ID</td>
+                <td>@x.NAME</td>
+                <td>@x.SURNAME</td>
+                <td>@x.CITY</td>
+                <td>@x.BALANCE</td>
+                <td>
+                    <a href="/Customer/Delete/@x.ID" class="btn btn-danger">Delete</a>
+                    <a href="/Customer/updatePage/@x.ID" class="btn btn-warning">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",new { page }),new PagedListRenderOptions
+{
+    LiElementClasses=new List<string> { "page-link"}
+})
+
+

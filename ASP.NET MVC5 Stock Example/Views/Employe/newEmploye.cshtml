@@ -1,0 +1,28 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.EMPLOYES
+@{
+    ViewBag.Title = "newEmploye";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <br />
+    <h3>Add New Employe</h3>
+    <br />
+    <label>Name</label>
+    <div style="margin-bottom: 15px">
+        <input type="text" class="form-control" name="NAME" />
+    </div>
+    <label>Surname</label>
+    <div style="margin-bottom:15px">
+        <input type="text" class="form-control" name="SURNAME" />
+    </div>
+    <label>Department</label>
+    <div style="margin-bottom:15px">
+        <input type="text" class="form-control" name="DEPARTMENT" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-success">Save</button>
+    </div>
+</form>
+
+

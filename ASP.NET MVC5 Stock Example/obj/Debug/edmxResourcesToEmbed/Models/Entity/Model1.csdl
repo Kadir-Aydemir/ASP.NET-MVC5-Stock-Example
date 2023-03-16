@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbMvcStokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCT_CATEGORY" FromRole="CATEGORY" ToRole="PRODUCT" />
+    <Property Name="REMOVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="CUSTOMERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CITY" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BALANCE" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="SALES" Relationship="Self.FK_SALES_CUSTOMERS" FromRole="CUSTOMERS" ToRole="SALES" />
+    <Property Name="REMOVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="EMPLOYES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SURNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DEPARTMENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SALES" Relationship="Self.FK_SALES_EMPLOYES" FromRole="EMPLOYES" ToRole="SALES" />
+    <Property Name="REMOVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BRAND" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="STOCK" Type="Int16" />
+    <Property Name="PURCHASE" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SALE" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CATEGORY" Type="Int32" />
+    <NavigationProperty Name="CATEGORY1" Relationship="Self.FK_PRODUCT_CATEGORY" FromRole="PRODUCT" ToRole="CATEGORY" />
+    <NavigationProperty Name="SALES" Relationship="Self.FK_SALES_PRODUCT" FromRole="PRODUCT" ToRole="SALES" />
+    <Property Name="REMOVE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="SALES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PRODUCT" Type="Int32" />
+    <Property Name="EMPLOYE" Type="Int32" />
+    <Property Name="CUSTOMER" Type="Int32" />
+    <Property Name="PRICE" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DATE" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="CUSTOMERS" Relationship="Self.FK_SALES_CUSTOMERS" FromRole="SALES" ToRole="CUSTOMERS" />
+    <NavigationProperty Name="EMPLOYES" Relationship="Self.FK_SALES_EMPLOYES" FromRole="SALES" ToRole="EMPLOYES" />
+    <NavigationProperty Name="PRODUCT1" Relationship="Self.FK_SALES_PRODUCT" FromRole="SALES" ToRole="PRODUCT" />
+    <Property Name="REMOVE" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_PRODUCT_CATEGORY">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="CATEGORY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_CUSTOMERS">
+    <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="0..1" />
+    <End Role="SALES" Type="Self.SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="CUSTOMER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_EMPLOYES">
+    <End Role="EMPLOYES" Type="Self.EMPLOYES" Multiplicity="0..1" />
+    <End Role="SALES" Type="Self.SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="EMPLOYE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_PRODUCT">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+    <End Role="SALES" Type="Self.SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="PRODUCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbMvcStokEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
+    <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" />
+    <EntitySet Name="EMPLOYES" EntityType="Self.EMPLOYES" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
+    <EntitySet Name="SALES" EntityType="Self.SALES" />
+    <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="Self.FK_PRODUCT_CATEGORY">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_CUSTOMERS" Association="Self.FK_SALES_CUSTOMERS">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_EMPLOYES" Association="Self.FK_SALES_EMPLOYES">
+      <End Role="EMPLOYES" EntitySet="EMPLOYES" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_PRODUCT" Association="Self.FK_SALES_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <EntitySet Name="ADMIN" EntityType="DbMvcStokModel.ADMIN" />
+  </EntityContainer>
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

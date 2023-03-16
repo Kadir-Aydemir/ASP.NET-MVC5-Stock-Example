@@ -1,0 +1,22 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.CATEGORY
+@{
+    ViewBag.Title = "updatePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm("updateCategory", "Category", FormMethod.Post))
+{
+    <br />
+    <h3>Update Category</h3>
+    <br />
+    <label>Category Name</label>
+    <div style="margin-top:15px">
+        @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+    <div style="margin-top:15px">
+        <button class="btn btn-warning">Save</button>
+    </div>
+}
+
+
+

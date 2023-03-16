@@ -1,0 +1,40 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.PRODUCT
+@{
+    ViewBag.Title = "newProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <br />
+    <h3>Add New Product</h3>
+    <br />
+    <label>Product Name</label>
+    <div style="margin-bottom: 15px">
+        <input type="text" class="form-control" name="NAME" />
+    </div>
+    <label>Brand</label>
+    <div style="margin-bottom:15px">
+        <input type="text" class="form-control" name="BRAND" />
+    </div>
+    <label>Stock</label>
+    <div style="margin-bottom:15px">
+        <input type="text" class="form-control" name="STOCK" />
+    </div>
+    <label>Purchase price</label>
+    <div style="margin-bottom: 15px ">
+        <input type="text" class="form-control" name="PURCHASE" />
+    </div>
+    <label>Sale price</label>
+    <div style="margin-bottom: 15px ">
+        <input type="text" class="form-control" name="SALE" />
+    </div>
+    <label>Category</label>
+    <div style="margin-bottom: 15px ">
+        @Html.DropDownListFor(x => x.CATEGORY1.ID, (List<SelectListItem>)ViewBag.ctglist, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-success">Save</button>
+    </div>
+</form>
+

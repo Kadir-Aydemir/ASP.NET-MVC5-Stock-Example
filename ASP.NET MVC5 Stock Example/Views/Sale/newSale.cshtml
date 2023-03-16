@@ -1,0 +1,32 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.SALES
+@{
+    ViewBag.Title = "newSale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<form method="post">
+    <br />
+    <h3>Add New Sale</h3>
+    <br />
+    <label>Product</label>
+    <div style="margin-bottom: 15px">
+        @Html.DropDownListFor(x => x.PRODUCT1.ID, (List<SelectListItem>)ViewBag.prdct, new {@class="form-control"})
+    </div>
+    <label>Employe</label>
+    <div style="margin-bottom:15px">
+        @Html.DropDownListFor(x => x.EMPLOYES.ID, (List<SelectListItem>)ViewBag.emply, new { @class = "form-control" })
+    </div>
+    <label>Customer</label>
+    <div style="margin-bottom:15px">
+        @Html.DropDownListFor(x => x.CUSTOMERS.ID, (List<SelectListItem>)ViewBag.cstmr, new { @class = "form-control" })
+    </div>
+    <label>Price</label>
+    <div style="margin-bottom: 15px ">
+        @Html.TextBoxFor(x => x.PRICE, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-warning">Save</button>
+    </div>
+</form>
+

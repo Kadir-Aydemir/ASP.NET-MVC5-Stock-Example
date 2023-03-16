@@ -1,0 +1,53 @@
+﻿@using ASP.NET_MVC5_Stock_Example.Models.Entity
+@model List<PRODUCT>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="form-control" style="margin-block:15px">
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+    {
+        <p>
+            Product name: @Html.TextBox("s")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
+
+
+<div style="margin-block:15px">
+    <a href="/Product/newProduct" class="btn btn-primary">New Product</a>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>BRAND</th>
+        <th>STOCK</th>
+        <th>PURCHASE</th>
+        <th>SALE</th>
+        <th>CATEGORY</th>
+        <th>TRANSACTIONS</th>
+    </tr>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.ID</td>
+                <td>@x.NAME</td>
+                <td>@x.BRAND</td>
+                <td>@x.STOCK</td>
+                <td>@x.PURCHASE</td>
+                <td>@x.SALE</td>
+                <td>@x.CATEGORY1.NAME</td>
+                <td>
+                    <a href="/Product/Delete/@x.ID" class="btn btn-danger">Delete</a>
+                    <a href="/Product/updatePage/@x.ID" class="btn btn-warning">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

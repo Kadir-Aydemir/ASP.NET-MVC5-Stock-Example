@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbMvcStokModelStoreContainer" CdmEntityContainer="DbMvcStokEntities">
+    <EntitySetMapping Name="CATEGORY">
+      <EntityTypeMapping TypeName="DbMvcStokModel.CATEGORY">
+        <MappingFragment StoreEntitySet="CATEGORY">
+          <ScalarProperty Name="REMOVE" ColumnName="REMOVE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERS">
+      <EntityTypeMapping TypeName="DbMvcStokModel.CUSTOMERS">
+        <MappingFragment StoreEntitySet="CUSTOMERS">
+          <ScalarProperty Name="REMOVE" ColumnName="REMOVE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYES">
+      <EntityTypeMapping TypeName="DbMvcStokModel.EMPLOYES">
+        <MappingFragment StoreEntitySet="EMPLOYES">
+          <ScalarProperty Name="REMOVE" ColumnName="REMOVE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+          <ScalarProperty Name="DEPARTMENT" ColumnName="DEPARTMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCT">
+      <EntityTypeMapping TypeName="DbMvcStokModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="REMOVE" ColumnName="REMOVE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+          <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+          <ScalarProperty Name="PURCHASE" ColumnName="PURCHASE" />
+          <ScalarProperty Name="SALE" ColumnName="SALE" />
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SALES">
+      <EntityTypeMapping TypeName="DbMvcStokModel.SALES">
+        <MappingFragment StoreEntitySet="SALES">
+          <ScalarProperty Name="REMOVE" ColumnName="REMOVE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PRODUCT" ColumnName="PRODUCT" />
+          <ScalarProperty Name="EMPLOYE" ColumnName="EMPLOYE" />
+          <ScalarProperty Name="CUSTOMER" ColumnName="CUSTOMER" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ADMIN">
+      <EntityTypeMapping TypeName="DbMvcStokModel.ADMIN">
+        <MappingFragment StoreEntitySet="ADMIN">
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="USER" ColumnName="USER" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

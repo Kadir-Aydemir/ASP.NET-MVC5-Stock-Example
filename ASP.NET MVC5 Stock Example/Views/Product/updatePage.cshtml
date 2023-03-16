@@ -1,0 +1,42 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.PRODUCT
+@{
+    ViewBag.Title = "updatePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("updateProduct", "Product", FormMethod.Post))
+{
+    <br />
+    <h3>Update Product</h3>
+    <br />
+    <label>Product Name</label>
+    <div style="margin-bottom: 15px">
+        @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+    </div>
+    <label>Brand</label>
+    <div style="margin-bottom:15px">
+        @Html.TextBoxFor(x => x.BRAND, new { @class = "form-control" })
+    </div>
+    <label>Stock</label>
+    <div style="margin-bottom:15px">
+        @Html.TextBoxFor(x => x.STOCK, new { @class = "form-control" })
+    </div>
+    <label>Purchase price</label>
+    <div style="margin-bottom: 15px ">
+        @Html.TextBoxFor(x => x.PURCHASE, new { @class = "form-control" })
+    </div>
+    <label>Sale price</label>
+    <div style="margin-bottom: 15px ">
+       @Html.TextBoxFor(x => x.SALE, new {@class="form-control"})
+    </div>
+    <label>Category</label>
+    <div style="margin-bottom: 15px ">
+        @Html.DropDownListFor(x => x.CATEGORY1.ID, (List<SelectListItem>)ViewBag.ctglist, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+    <div style="margin-top:15px">
+        <button class="btn btn-warning">Save</button>
+    </div>
+}
+
+

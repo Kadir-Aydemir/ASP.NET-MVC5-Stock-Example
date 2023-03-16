@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbMvcStokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER" Type="varchar" MaxLength="20" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="REMOVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="CUSTOMERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="30" />
+    <Property Name="SURNAME" Type="varchar" MaxLength="30" />
+    <Property Name="CITY" Type="varchar" MaxLength="15" />
+    <Property Name="BALANCE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="REMOVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="EMPLOYES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="30" />
+    <Property Name="SURNAME" Type="varchar" MaxLength="30" />
+    <Property Name="DEPARTMENT" Type="varchar" MaxLength="50" />
+    <Property Name="REMOVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="50" />
+    <Property Name="BRAND" Type="varchar" MaxLength="50" />
+    <Property Name="STOCK" Type="smallint" />
+    <Property Name="PURCHASE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SALE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CATEGORY" Type="int" />
+    <Property Name="REMOVE" Type="bit" />
+  </EntityType>
+  <EntityType Name="SALES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCT" Type="int" />
+    <Property Name="EMPLOYE" Type="int" />
+    <Property Name="CUSTOMER" Type="int" />
+    <Property Name="PRICE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DATE" Type="smalldatetime" />
+    <Property Name="REMOVE" Type="bit" />
+  </EntityType>
+  <Association Name="FK_PRODUCT_CATEGORY">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCT">
+        <PropertyRef Name="CATEGORY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_CUSTOMERS">
+    <End Role="CUSTOMERS" Type="Self.CUSTOMERS" Multiplicity="0..1" />
+    <End Role="SALES" Type="Self.SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="CUSTOMER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_EMPLOYES">
+    <End Role="EMPLOYES" Type="Self.EMPLOYES" Multiplicity="0..1" />
+    <End Role="SALES" Type="Self.SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="EMPLOYE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SALES_PRODUCT">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+    <End Role="SALES" Type="Self.SALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SALES">
+        <PropertyRef Name="PRODUCT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbMvcStokModelStoreContainer">
+    <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMERS" EntityType="Self.CUSTOMERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYES" EntityType="Self.EMPLOYES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SALES" EntityType="Self.SALES" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_PRODUCT_CATEGORY" Association="Self.FK_PRODUCT_CATEGORY">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_CUSTOMERS" Association="Self.FK_SALES_CUSTOMERS">
+      <End Role="CUSTOMERS" EntitySet="CUSTOMERS" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_EMPLOYES" Association="Self.FK_SALES_EMPLOYES">
+      <End Role="EMPLOYES" EntitySet="EMPLOYES" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SALES_PRODUCT" Association="Self.FK_SALES_PRODUCT">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="SALES" EntitySet="SALES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

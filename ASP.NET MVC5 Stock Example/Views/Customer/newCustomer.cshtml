@@ -1,0 +1,34 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.CUSTOMERS
+@{
+    ViewBag.Title = "newCustomer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form method="post">
+    <br />
+    <h3>Add New Customer</h3>
+    <br />
+    <label>Name</label>
+    <div style="margin-bottom: 15px">
+        @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NAME, "", new {@style="color:red"})
+    </div>
+    <label>Surname</label>
+    <div style="margin-bottom:15px">
+        @Html.TextBoxFor(x => x.SURNAME, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SURNAME, "", new { @style = "color:red" })
+    </div>
+    <label>City</label>
+    <div style="margin-bottom:15px">
+        @Html.TextBoxFor(x => x.CITY, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CITY, "", new { @style = "color:red" })
+    </div>
+    <label>Balance</label>
+    <div style="margin-bottom: 15px ">
+        @Html.TextBoxFor(x => x.BALANCE, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-warning">Save</button>
+    </div>
+</form>
+

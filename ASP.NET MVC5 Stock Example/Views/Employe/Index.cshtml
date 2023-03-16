@@ -1,0 +1,37 @@
+﻿@using ASP.NET_MVC5_Stock_Example.Models.Entity
+@model List<EMPLOYES>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="margin-block:15px">
+    <a href="/Employe/newEmploye" class="btn btn-primary">New Employe</a>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>DEPARTMENT</th>
+        <th>TRANSACTIONS</th>
+    </tr>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.ID</td>
+                <td>@x.NAME</td>
+                <td>@x.SURNAME</td>
+                <td>@x.DEPARTMENT</td>
+                <td>
+                    <a href="/Employe/Delete/@x.ID" class="btn btn-danger">Delete</a>
+                    <a href="/Employe/updatePage/@x.ID" class="btn btn-warning">Update</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

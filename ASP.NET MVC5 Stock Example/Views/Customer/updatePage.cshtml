@@ -1,0 +1,34 @@
+﻿@model ASP.NET_MVC5_Stock_Example.Models.Entity.CUSTOMERS
+@{
+    ViewBag.Title = "updatePage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("updateCustomer", "Customer", FormMethod.Post))
+{
+    <br />
+    <h3>Update Costumer</h3>
+    <br />
+    <label>Name</label>
+    <div style="margin-bottom: 15px">
+        @Html.TextBoxFor(x => x.NAME, new { @class = "form-control" })
+    </div>
+    <label>Surname</label>
+    <div style="margin-bottom:15px">
+        @Html.TextBoxFor(x => x.SURNAME, new { @class = "form-control" })
+    </div>
+    <label>City</label>
+    <div style="margin-bottom:15px">
+        @Html.TextBoxFor(x => x.CITY, new { @class = "form-control" })
+    </div>
+    <label>Balance</label>
+    <div style="margin-bottom: 15px ">
+        @Html.TextBoxFor(x => x.BALANCE, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(x => x.ID, new { @class = "form-control" })
+    <div style="margin-top:15px">
+        <button class="btn btn-warning">Save</button>
+    </div>
+}
+
